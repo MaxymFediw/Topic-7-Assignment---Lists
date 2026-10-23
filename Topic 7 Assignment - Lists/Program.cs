@@ -16,7 +16,7 @@ namespace Topic_7_Assignment___Lists //Maxym F.
 
             Random Gen = new Random();
             
-            int choice, numberList, removeNum, addNum, vegChoice;
+            int choice, numberList, removeNum, addNum, vegChoice, numOccurences, target;
 
             bool numberGen, menu, menuInterface;
 
@@ -109,37 +109,47 @@ namespace Topic_7_Assignment___Lists //Maxym F.
                         }
                     }
 
-                    else if (choice == 4)
+                    else if (choice == 4) //WIP
                     {
                         Console.WriteLine("What Number Do You Want To Add?");
                         Int32.TryParse(Console.ReadLine(), out addNum);
 
-                        //bool isAdded = numbers.Add(addNum);
+                        Console.WriteLine();
+
                     }
 
-                    else if (choice == 5)
+                    else if (choice == 5) //WIP
                     {
+                        Console.WriteLine("What number do you want to count its occurences?");
+                        Int32.TryParse(Console.ReadLine(), out target);
 
+                        
                     }
 
                     else if (choice == 6)
                     {
-
+                        Console.WriteLine("The largest number in this list is: " + numbers.Max());
+                        Console.WriteLine();
                     }
 
                     else if (choice == 7)
                     {
+                       
 
+                        Console.WriteLine("The smallest number in this list is: " + numbers.Min());
+                        Console.WriteLine();
+                        
                     }
 
                     else if (choice == 8)
                     {
-
+                        Console.WriteLine("The average of this list is: " + numbers.Average());
+                        Console.WriteLine("The sum of this list is: " + numbers.Sum());
                     }
 
-                    else if (choice == 9)
+                    else if (choice == 9) //Most frequent Values (WIP)
                     {
-
+                        
                     }
 
                     else if (choice == 10)
