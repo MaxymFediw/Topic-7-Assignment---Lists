@@ -16,18 +16,19 @@ namespace Topic_7_Assignment___Lists //Maxym F.
 
             Random Gen = new Random();
 
-            string deleteVeg, searchVeg, addVeg;
+            string deleteVeg, searchVeg, addVeg, deleteVegIndex;
 
             int choice, numberList, removeNum, addNum, vegChoice, numOccurences, target, startChoice;
 
-            bool numberGen, menu, menuInterface, start;
+            bool numberGen, menu, menuInterface, start, menuTwo;
 
             numOccurences = 0;
 
             numberGen = false;
             menu = false;
-            menuInterface = false;
+            menuInterface = true;
             start = false;
+            menuTwo = true;
 
 
             List<int> numbers = new List<int>();
@@ -37,14 +38,22 @@ namespace Topic_7_Assignment___Lists //Maxym F.
                 numbers.Add(Gen.Next(10, 21));
             }
 
+            List<string> vegetables = new List<string>() { "CARROT", "BEET", "CELERY", "RADDISH", "CABBAGE" };
+
+            
+
+
 
             //add initial menu to choose part 1 from part 2:
             while (!start)
             {
 
+
+
                 Console.WriteLine("What would you like to do?");
                 Console.WriteLine("1 - Lists of Intigers");
                 Console.WriteLine("2 - Vegetables");
+                Console.WriteLine("3 - Quit");
                 Int32.TryParse(Console.ReadLine(), out startChoice);
 
                 if (startChoice == 1)
@@ -52,179 +61,197 @@ namespace Topic_7_Assignment___Lists //Maxym F.
                     menuInterface = false;
                 }
 
-                else if (startChoice == 2) 
+                else if (startChoice == 2)
                 {
-                    //make summ for part 2
+                    menuTwo = false;
+                }
+
+                else if (startChoice == 3) 
+                {
+                    return;
                 }
 
 
-                    while (!menu)
+
+
+
+                    //Part 1:
+                    while (!menuInterface)
                     {
 
 
 
-                        //Part 1:
-                        while (!menuInterface)
+                        Console.WriteLine("Here are a list of numbers:");
+                        Console.WriteLine();
+
+
+                        for (int i = 0; i < numbers.Count; i++)
+                            Console.Write(numbers[i] + " ");
+
+
+                        Console.WriteLine();
+                        Console.WriteLine();
+
+                        Console.WriteLine("What would you like to do? [Select the Number]");
+                        Console.WriteLine();
+                        Console.WriteLine("1 - Sort The List");
+                        Console.WriteLine("2 - New List of Numbers");
+                        Console.WriteLine("3 - Remove a Number");
+                        Console.WriteLine("4 - Add a Value To The List");
+                        Console.WriteLine("5 - How Mnay Times A Number Appears");
+                        Console.WriteLine("6 - Print Largest Value");
+                        Console.WriteLine("7 - Print Smallest Value");
+                        Console.WriteLine("8 - Sum And Average of List");
+
+                        Console.WriteLine("9 - Exit");
+                        Int32.TryParse(Console.ReadLine(), out choice);
+
+                        Console.Clear();
+
+                        if (choice == 1)
+                        {
+                            numbers.Sort();
+                        }
+
+                        else if (choice == 2)
                         {
 
 
+                            numbers.Clear();
+                            Console.WriteLine("Here are your new Numbers:");
 
-                            Console.WriteLine("Here are a list of numbers:");
-                            Console.WriteLine();
-
-
-                            for (int i = 0; i < numbers.Count; i++)
-                                Console.Write(numbers[i] + " ");
-
-
-                            Console.WriteLine();
-                            Console.WriteLine();
-
-                            Console.WriteLine("What would you like to do? [Select the Number]");
-                            Console.WriteLine();
-                            Console.WriteLine("1 - Sort The List");
-                            Console.WriteLine("2 - New List of Numbers");
-                            Console.WriteLine("3 - Remove a Number");
-                            Console.WriteLine("4 - Add a Value To The List");
-                            Console.WriteLine("5 - How Mnay Times A Number Appears");
-                            Console.WriteLine("6 - Print Largest Value");
-                            Console.WriteLine("7 - Print Smallest Value");
-                            Console.WriteLine("8 - Sum And Average of List");
-
-                            Console.WriteLine("9 - Exit");
-                            Int32.TryParse(Console.ReadLine(), out choice);
-
-                            Console.Clear();
-
-                            if (choice == 1)
+                            for (int i = 0; i < 25; i++)
                             {
-                                numbers.Sort();
+                                numbers.Add(Gen.Next(10, 21));
                             }
 
-                            else if (choice == 2)
+                            Console.WriteLine();
+
+                            menuInterface = false;
+
+                        }
+
+                        else if (choice == 3)
+                        {
+                            Console.WriteLine("Insert a Number To Be Removed");
+                            Int32.TryParse(Console.ReadLine(), out removeNum);
+
+                            for (int i = 0; i <= numbers.Count; i++)
                             {
+                                bool isRemoved = numbers.Remove(removeNum);
+                            }
+                        }
 
+                        else if (choice == 4)
+                        {
+                            Console.WriteLine("What Number Do You Want To Add?");
 
-                                numbers.Clear();
-                                Console.WriteLine("Here are your new Numbers:");
-
-                                for (int i = 0; i < 25; i++)
-                                {
-                                    numbers.Add(Gen.Next(10, 21));
-                                }
-
-                                Console.WriteLine();
-
-                                menuInterface = false;
-
+                            if (Int32.TryParse(Console.ReadLine(), out addNum))
+                            {
+                                numbers.Add(addNum);
                             }
 
-                            else if (choice == 3)
+                            Console.WriteLine();
+
+                        }
+
+                        else if (choice == 5)
+                        {
+                            Console.WriteLine("What number do you want to count its occurences?");
+
+                            if (Int32.TryParse(Console.ReadLine(), out target))
                             {
-                                Console.WriteLine("Insert a Number To Be Removed");
-                                Int32.TryParse(Console.ReadLine(), out removeNum);
-
-                                for (int i = 0; i <= numbers.Count; i++)
+                                for (int i = 0; i < numbers.Count; i++)
                                 {
-                                    bool isRemoved = numbers.Remove(removeNum);
-                                }
-                            }
-
-                            else if (choice == 4)
-                            {
-                                Console.WriteLine("What Number Do You Want To Add?");
-
-                                if (Int32.TryParse(Console.ReadLine(), out addNum))
-                                {
-                                    numbers.Add(addNum);
-                                }
-
-                                Console.WriteLine();
-
-                            }
-
-                            else if (choice == 5)
-                            {
-                                Console.WriteLine("What number do you want to count its occurences?");
-
-                                if (Int32.TryParse(Console.ReadLine(), out target))
-                                {
-                                    for (int i = 0; i < numbers.Count; i++)
+                                    if (numbers[i] == target)
                                     {
-                                        if (numbers[i] == target)
-                                        {
-                                            numOccurences++;
-                                        }
-
+                                        numOccurences++;
                                     }
 
-
-
-                                    Console.WriteLine($"The number {target} appears {numOccurences} times.");
-
                                 }
 
 
 
-                            }
-
-                            else if (choice == 6)
-                            {
-                                Console.WriteLine("The largest number in this list is: " + numbers.Max());
-                                Console.WriteLine();
-                            }
-
-                            else if (choice == 7)
-                            {
-
-
-                                Console.WriteLine("The smallest number in this list is: " + numbers.Min());
-                                Console.WriteLine();
+                                Console.WriteLine($"The number {target} appears {numOccurences} times.");
 
                             }
-
-                            else if (choice == 8)
-                            {
-                                Console.WriteLine("The average of this list is: " + numbers.Average());
-                                Console.WriteLine("The sum of this list is: " + numbers.Sum());
-                            }
-
-
-
-                            else if (choice == 9)
-                            {
-                                return;
-                            }
-
-
-
 
 
 
                         }
 
-                        //Part 2:
+                        else if (choice == 6)
+                        {
+                            Console.WriteLine("The largest number in this list is: " + numbers.Max());
+                            Console.WriteLine();
+                        }
 
-                        Console.WriteLine("Choose a vegetable! [Input the Corrisponding Number]");
-                        Console.WriteLine("1 - CARROT");
-                        Console.WriteLine("2 - BEET");
-                        Console.WriteLine("3 - CELERY");
-                        Console.WriteLine("4 - RADISH");
-                        Console.WriteLine("5 - CABBAGE");
+                        else if (choice == 7)
+                        {
+
+
+                            Console.WriteLine("The smallest number in this list is: " + numbers.Min());
+                            Console.WriteLine();
+
+                        }
+
+                        else if (choice == 8)
+                        {
+                            Console.WriteLine("The average of this list is: " + numbers.Average());
+                            Console.WriteLine("The sum of this list is: " + numbers.Sum());
+                        }
+
+
+
+                        else if (choice == 9)
+                        {
+                            menuInterface = true;
+                        }
+
+
+
+                    }
+
+
+                    
+
+                    //Part 2:
+
+                    while (!menuTwo)
+                    {
+                        
+                        Console.WriteLine("VEGETABLES:");
+                         for (int i = 0; i < vegetables.Count; i++)
+                        Console.WriteLine(i + "-" + vegetables[i] + " ");
+
+                    Console.WriteLine();
+
+                        Console.WriteLine("1 - Remove a vegetable by Index");
+                        Console.WriteLine("2 - Remove a vegetable by value");
+                        Console.WriteLine("3 - Search for a Vegetable");
+                        Console.WriteLine("4 - Add a Vegetable");
+                        Console.WriteLine("5 - Sort List");
+                        Console.WriteLine("6 - Return");
                         Int32.TryParse(Console.ReadLine(), out vegChoice);
 
                         if (vegChoice == 1)
                         {
+                            Console.WriteLine("Remove an INDEX of your choice from the list of vegtables!");
+                            deleteVegIndex = Console.ReadLine();
 
-                        }
+                            for (int i = 0; i <= vegetables.Count; i++)
+                            {
+                                bool isRemovedVeg = vegetables.Remove(deleteVegIndex);
+                            }
+                    }
 
                         else if (vegChoice == 2)
                         {
                             Console.WriteLine("What vegetable would you like to get rid of?");
                             deleteVeg = Console.ReadLine().ToUpper();
 
-                            Console.WriteLine($"Okay, you have chosen to get rid of {deleteVeg}.");
-                        }
+                            
+                    }
 
                         else if (vegChoice == 3)
                         {
@@ -242,15 +269,16 @@ namespace Topic_7_Assignment___Lists //Maxym F.
 
                         else if (vegChoice == 5) //Sort List
                         {
-
+                            vegetables.Sort();
                         }
 
                         else if (vegChoice == 6)
                         {
-                            return;
+                            menuTwo = true;
                         }
 
                     }
+                
 
 
 
