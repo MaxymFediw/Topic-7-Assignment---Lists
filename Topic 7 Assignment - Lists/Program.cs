@@ -16,11 +16,12 @@ namespace Topic_7_Assignment___Lists //Maxym F.
 
             Random Gen = new Random();
 
-            string deleteVeg, searchVeg, addVeg, deleteVegIndex;
+            string deleteVegString, searchVeg, addVeg;
+            int deleteVegIndex;
 
             int choice, numberList, removeNum, addNum, vegChoice, numOccurences, target, startChoice;
 
-            bool numberGen, menu, menuInterface, start, menuTwo;
+            bool numberGen, menu, menuInterface, start, menuTwo, vegChoice2;
 
             numOccurences = 0;
 
@@ -29,6 +30,7 @@ namespace Topic_7_Assignment___Lists //Maxym F.
             menuInterface = true;
             start = false;
             menuTwo = true;
+            vegChoice2 = false;
 
 
             List<int> numbers = new List<int>();
@@ -51,7 +53,7 @@ namespace Topic_7_Assignment___Lists //Maxym F.
 
 
                 Console.WriteLine("What would you like to do?");
-                Console.WriteLine("1 - Lists of Intigers");
+                Console.WriteLine("1 - Lists of Integers");
                 Console.WriteLine("2 - Vegetables");
                 Console.WriteLine("3 - Quit");
                 Int32.TryParse(Console.ReadLine(), out startChoice);
@@ -68,6 +70,7 @@ namespace Topic_7_Assignment___Lists //Maxym F.
 
                 else if (startChoice == 3) 
                 {
+                    Console.Clear();
                     return;
                 }
 
@@ -131,14 +134,14 @@ namespace Topic_7_Assignment___Lists //Maxym F.
 
                         }
 
-                        else if (choice == 3)
+                        else if (choice == 3) 
                         {
                             Console.WriteLine("Insert a Number To Be Removed");
                             Int32.TryParse(Console.ReadLine(), out removeNum);
 
                             for (int i = 0; i <= numbers.Count; i++)
                             {
-                                bool isRemoved = numbers.Remove(removeNum);
+                            bool isRemoved = numbers.Remove(removeNum);
                             }
                         }
 
@@ -219,61 +222,77 @@ namespace Topic_7_Assignment___Lists //Maxym F.
 
                     while (!menuTwo)
                     {
-                        
+                        Console.Clear();
                         Console.WriteLine("VEGETABLES:");
                          for (int i = 0; i < vegetables.Count; i++)
                         Console.WriteLine(i + "-" + vegetables[i] + " ");
 
-                    Console.WriteLine();
+                        Console.WriteLine();
 
                         Console.WriteLine("1 - Remove a vegetable by Index");
                         Console.WriteLine("2 - Remove a vegetable by value");
                         Console.WriteLine("3 - Search for a Vegetable");
-                        Console.WriteLine("4 - Add a Vegetable");
+                        Console.WriteLine("4 - Add a Vegetable");  
                         Console.WriteLine("5 - Sort List");
                         Console.WriteLine("6 - Return");
                         Int32.TryParse(Console.ReadLine(), out vegChoice);
 
-                        if (vegChoice == 1)
+                        if (vegChoice == 1) //Done
                         {
+                            Console.Clear();
+                            
                             Console.WriteLine("Remove an INDEX of your choice from the list of vegtables!");
-                            deleteVegIndex = Console.ReadLine();
+                            Int32.TryParse(Console.ReadLine(), out deleteVegIndex);
 
-                            for (int i = 0; i <= vegetables.Count; i++)
-                            {
-                                bool isRemovedVeg = vegetables.Remove(deleteVegIndex);
-                            }
-                    }
+                            vegetables.RemoveAt(deleteVegIndex);
 
-                        else if (vegChoice == 2)
+                        }
+
+                        else if (vegChoice == 2) //Done
                         {
+
+                            Console.Clear();
+
                             Console.WriteLine("What vegetable would you like to get rid of?");
-                            deleteVeg = Console.ReadLine().ToUpper();
+                            deleteVegString = Console.ReadLine().ToUpper();
+
+                            vegetables.Remove(deleteVegString);
+
+                        
 
                             
-                    }
+                        }
 
-                        else if (vegChoice == 3)
+                        else if (vegChoice == 3) //WIP
                         {
+                            Console.Clear();
                             Console.WriteLine("Which vegetable are you looking for?");
                             searchVeg = Console.ReadLine().ToUpper();
 
                             Console.WriteLine($"Alrighty, you chose {searchVeg}.");
+
+                            //vegetables.Find();
+                            
                         }
 
-                        else if (vegChoice == 4)
+                        else if (vegChoice == 4) //Done
                         {
+                            Console.Clear();
                             Console.WriteLine("What vegetable would you like to add?");
                             addVeg = Console.ReadLine().ToUpper();
+
+                            vegetables.Add(addVeg);
                         }
 
-                        else if (vegChoice == 5) //Sort List
+                        else if (vegChoice == 5) //Done
                         {
+                            Console.Clear();
                             vegetables.Sort();
                         }
 
-                        else if (vegChoice == 6)
+                        else if (vegChoice == 6) //Done
                         {
+                            Console.Clear();
                             menuTwo = true;
                         }
 
