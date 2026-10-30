@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Diagnostics.Eventing.Reader;
 using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Topic_7_Assignment___Lists //Maxym F.
 {
@@ -19,7 +14,7 @@ namespace Topic_7_Assignment___Lists //Maxym F.
             string deleteVegString, searchVeg, addVeg;
             int deleteVegIndex;
 
-            int choice, numberList, removeNum, addNum, vegChoice, numOccurences, target, startChoice;
+            int choice, numberList, removeNum, addNum, vegChoice, numOccurences, target, startChoice, indexVeg;
 
             bool numberGen, menu, menuInterface, start, menuTwo, vegChoice2;
 
@@ -31,6 +26,8 @@ namespace Topic_7_Assignment___Lists //Maxym F.
             start = false;
             menuTwo = true;
             vegChoice2 = false;
+
+            indexVeg = 0;
 
 
             List<int> numbers = new List<int>();
@@ -216,88 +213,123 @@ namespace Topic_7_Assignment___Lists //Maxym F.
                     }
 
 
-                    
 
-                    //Part 2:
 
-                    while (!menuTwo)
-                    {
-                        Console.Clear();
-                        Console.WriteLine("VEGETABLES:");
-                         for (int i = 0; i < vegetables.Count; i++)
+                //Part 2:
+
+                while (!menuTwo)
+                {
+                    Console.Clear();
+                    Console.WriteLine("VEGETABLES:");
+                    for (int i = 0; i < vegetables.Count; i++)
                         Console.WriteLine(i + "-" + vegetables[i] + " ");
 
-                        Console.WriteLine();
+                    Console.WriteLine();
 
-                        Console.WriteLine("1 - Remove a vegetable by Index");
-                        Console.WriteLine("2 - Remove a vegetable by value");
-                        Console.WriteLine("3 - Search for a Vegetable");
-                        Console.WriteLine("4 - Add a Vegetable");  
-                        Console.WriteLine("5 - Sort List");
-                        Console.WriteLine("6 - Return");
-                        Int32.TryParse(Console.ReadLine(), out vegChoice);
+                    Console.WriteLine("1 - Remove a vegetable by Index");
+                    Console.WriteLine("2 - Remove a vegetable by value");
+                    Console.WriteLine("3 - Search for a Vegetable");
+                    Console.WriteLine("4 - Add a Vegetable");
+                    Console.WriteLine("5 - Sort List");
+                    Console.WriteLine("6 - Return");
+                    Int32.TryParse(Console.ReadLine(), out vegChoice);
 
-                        if (vegChoice == 1) //Done
+                    if (vegChoice == 1) 
+                    {
+                        Console.Clear();
+
+                        Console.WriteLine("Remove an INDEX of your choice from the list of vegtables!");
+                        Int32.TryParse(Console.ReadLine(), out deleteVegIndex);
+
+                        if (deleteVegIndex <= vegetables.Count - 1)
                         {
-                            Console.Clear();
-                            
-                            Console.WriteLine("Remove an INDEX of your choice from the list of vegtables!");
-                            Int32.TryParse(Console.ReadLine(), out deleteVegIndex);
-
                             vegetables.RemoveAt(deleteVegIndex);
 
                         }
 
-                        else if (vegChoice == 2) //Done
+                        else 
                         {
-
-                            Console.Clear();
-
-                            Console.WriteLine("What vegetable would you like to get rid of?");
-                            deleteVegString = Console.ReadLine().ToUpper();
-
-                            vegetables.Remove(deleteVegString);
-
-                        
-
-                            
-                        }
-
-                        else if (vegChoice == 3) //WIP
-                        {
-                            Console.Clear();
-                            Console.WriteLine("Which vegetable are you looking for?");
-                            searchVeg = Console.ReadLine().ToUpper();
-
-                            Console.WriteLine($"Alrighty, you chose {searchVeg}.");
-
-                            //vegetables.Find();
-                            
-                        }
-
-                        else if (vegChoice == 4) //Done
-                        {
-                            Console.Clear();
-                            Console.WriteLine("What vegetable would you like to add?");
-                            addVeg = Console.ReadLine().ToUpper();
-
-                            vegetables.Add(addVeg);
-                        }
-
-                        else if (vegChoice == 5) //Done
-                        {
-                            Console.Clear();
-                            vegetables.Sort();
-                        }
-
-                        else if (vegChoice == 6) //Done
-                        {
-                            Console.Clear();
-                            menuTwo = true;
+                            Console.WriteLine("INVALID");
+                            Console.WriteLine("Press Anything To Continue.");
+                            Console.ReadKey();
                         }
 
                     }
-                
+
+                    else if (vegChoice == 2) 
+                    {
+
+                        Console.Clear();
+
+                        Console.WriteLine("What vegetable would you like to get rid of?");
+                        deleteVegString = Console.ReadLine().ToUpper();
+
+                        vegetables.Remove(deleteVegString);
+
+
+
+
+                    }
+
+                    else if (vegChoice == 3) //WIP
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Which vegetable are you looking for?");
+                        searchVeg = Console.ReadLine().ToUpper();
+
+                        
+
+                        for (int i = 0; i <= vegetables.Count - 1; i++) 
+                        {
+                            if (vegetables[i] == searchVeg)
+                            {
+                                indexVeg = i;
+
+                            }
+
+
+                        }
+
+                        if (vegetables.Contains(searchVeg))
+                        {
+                            Console.WriteLine($"{searchVeg} Exists At {indexVeg}.");
+                            Console.WriteLine("Press Anything To Continue.");   
+                        }
+
+                        else 
+                        {
+                            Console.WriteLine($"{searchVeg} does not exist.");
+                            Console.WriteLine("Press Anything To Continue.");
+
+                        }
+
+                        Console.ReadKey();
+
+                    }
+
+                    else if (vegChoice == 4)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("What vegetable would you like to add?");
+                        addVeg = Console.ReadLine().ToUpper();
+
+                        vegetables.Add(addVeg);
+                    }
+
+                    else if (vegChoice == 5)
+                    {
+                        Console.Clear();
+                        vegetables.Sort();
+                    }
+
+                    else if (vegChoice == 6) 
+                    {
+                        Console.Clear();
+                        menuTwo = true;
+                    }
+
+
+                }
 
 
 
